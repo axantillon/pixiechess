@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import ConnectWallet from '../misc/ConnectWallet';
-import { Button } from '../ui/button';
 import { FaXTwitter } from 'react-icons/fa6';
+import ConnectWallet from './misc/ConnectWallet';
+import { Button } from './ui/button';
 
 interface NavBarProps {
   

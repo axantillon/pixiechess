@@ -1,11 +1,9 @@
-import Background from '@/lib/assets/background.png';
+import NavBar from '@/components/NavBar';
 import ProviderWrapper from '@/lib/providers/ProviderWrapper';
 import { cn } from '@/lib/utils/cn';
 import type { Metadata } from 'next';
 import LocalFont from 'next/font/local';
-import Image from 'next/image';
 import '../lib/styles/globals.css';
-import NavBar from '@/components/layout/NavBar';
 
 const font = LocalFont({
   src: '../lib/font/font.woff2'
@@ -23,8 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(font.className, "min-h-screen w-screen")}>
-        <Image alt="background" src={Background} quality={100} fill sizes='100vw' style={{ objectFit: 'cover', zIndex: "-1" }} />
+      <body className={cn(font.className, "w-screen h-screen")} style={{
+        backgroundImage: `url(/background.png)`,
+      }}>
+        {/* <Image alt="background" src={Background} quality={100} fill sizes='100vw' style={{ objectFit: 'cover', zIndex: "-1" }} /> */}
         <ProviderWrapper>
           <NavBar />
           {children}
