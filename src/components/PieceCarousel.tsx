@@ -38,9 +38,9 @@ const PieceCarousel: FC<PieceCarouselProps> = ({ pieces }) => {
             </Button>
         </div>
         <div className="w-full px-36">
-            <div className={cn("flex font-extrabold px-12 py-6 border-2 border-l-white border-t-white border-r-black border-b-black bg-[#F3F8FB]/60")}>
+            <div className={cn("flex w-full max-h-[1000px] font-extrabold px-12 py-6 border-2 border-l-white border-t-white border-r-black border-b-black bg-[#F3F8FB]/60")}>
                 <div className="w-2/3 flex flex-col space-y-2">
-                    <span className='text-3xl'>{activePiece.name} - #{activePiece.id}</span>
+                    <span className='text-3xl'>#{activePiece.id} {activePiece.name}</span>
                     <span>{activePiece.date}</span>
                     <span className=''>{activePiece.description}</span>
                     <span>{activePiece.category}</span>
