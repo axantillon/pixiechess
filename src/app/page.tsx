@@ -6,6 +6,10 @@ import King from '@/lib/assets/King.png';
 import Pawn from '@/lib/assets/Pawn.png';
 import MoveSet from '@/lib/assets/moveSet.png';
 import { Piece } from "@/lib/types/pieces";
+import { Separator } from "@/components/ui/separator";
+import Explainer from "@/components/Explainer";
+import PieceHistory from "@/components/PieceHistory";
+import Tournaments from "@/components/Tournaments";
 
 export default function Home() {
 
@@ -63,8 +67,14 @@ export default function Home() {
   ]
 
   return (
-    <main className="px-4 pb-12">
+    <main className="pb-12">
       <PieceCarousel pieces={pieces} />
+      <Separator className="my-20 bg-black" />
+      <Explainer />
+      <Separator className="my-20 bg-black" />
+      <PieceHistory />
+      <Separator className="my-20 bg-black" />
+      <Tournaments />
     </main>
   )
 }

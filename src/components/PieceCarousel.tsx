@@ -15,7 +15,7 @@ const PieceCarousel: FC<PieceCarouselProps> = ({ pieces }) => {
     const [activePiece, setActivePiece] = useState<Piece>(pieces[1]);
 
     return (<>
-        <div className={'flex items-center justify-center w-full h-72 px-10 space-x-10'}>
+        <div className={'flex items-center justify-center w-full h-72 px-14 space-x-10'}>
             <Button className='text-2xl'>
                 <FaArrowLeft />
             </Button>
@@ -38,7 +38,7 @@ const PieceCarousel: FC<PieceCarouselProps> = ({ pieces }) => {
             </Button>
         </div>
         <div className="w-full px-36">
-            <div className={cn("flex w-full max-h-[1000px] font-extrabold px-12 py-6 border-2 border-l-white border-t-white border-r-black border-b-black bg-[#F3F8FB]/60")}>
+            <div className={cn("flex w-full max-h-[1000px] font-extrabold px-12 py-6 border-2 border-l-white border-t-white border-r-black border-b-black bg-[#F3F8FB]/80")}>
                 <div className="w-2/3 flex flex-col space-y-2">
                     <span className='text-3xl'>#{activePiece.id} {activePiece.name}</span>
                     <span>{activePiece.date}</span>
