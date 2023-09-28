@@ -22,7 +22,9 @@ export default function Home() {
       imageMovement: MoveSet,
       category: 'Rook',
       initialPrice: 0.1,
-      date: '2021-10-10',
+      dateCreated: '2021-10-10',
+      auctionEndDate: '2021-10-10',
+      currentBid: 0.1,
     },
     {
       id: '2',
@@ -32,7 +34,9 @@ export default function Home() {
       imageMovement: MoveSet,
       category: 'Bishop',
       initialPrice: 0.1,
-      date: '2021-10-10',
+      dateCreated: '2021-10-10',
+      auctionEndDate: '2021-10-10',
+      currentBid: 0.5,
     },
     {
       id: '3',
@@ -42,7 +46,9 @@ export default function Home() {
       imageMovement: MoveSet,
       category: 'King',
       initialPrice: 0.1,
-      date: '2021-10-10',
+      dateCreated: '2021-10-10',
+      auctionEndDate: '2021-10-10',
+      currentBid: 1,
     },
     {
       id: '4',
@@ -52,7 +58,9 @@ export default function Home() {
       imageMovement: MoveSet,
       category: 'Pawn',
       initialPrice: 0.1,
-      date: '2021-10-10',
+      dateCreated: '2021-10-10',
+      auctionEndDate: '2021-10-10',
+      currentBid: 5,
     },
     {
       id: '5',
@@ -62,7 +70,9 @@ export default function Home() {
       imageMovement: MoveSet,
       category: 'Knigh',
       initialPrice: 0.1,
-      date: '2021-10-10',
+      dateCreated: '2021-10-10',
+      auctionEndDate: '2021-10-10',
+      currentBid: 10,
     },
   ]
 

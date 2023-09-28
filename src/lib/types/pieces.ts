@@ -5,8 +5,10 @@ export type Piece = {
     name: string;
     description: string;
     initialPrice: number;
+    currentBid: number;
+    auctionEndDate: string;
     imagePiece: string | StaticImageData;
     imageMovement: string | StaticImageData;
     category: string;
-    date: string;
+    dateCreated: string;
 }
