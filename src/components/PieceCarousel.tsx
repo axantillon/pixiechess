@@ -10,7 +10,7 @@ import { Input } from './ui/input';
 const PieceBox = ({ piece }: { piece: Piece }) => {
 
     return (
-        <div className={cn("flex w-full h-[500px] font-extrabold px-12 py-6 border-2 border-l-white border-t-white border-r-black border-b-black bg-[#F3F8FB]/80")}>
+        <div className={cn("flex w-full max-w-[800px] h-[500px] mx-auto font-extrabold px-12 py-6 border-2 border-l-white border-t-white border-r-black border-b-black bg-[#F3F8FB]/50")}>
                 <div className="w-2/3 flex flex-col space-y-8">
 
                     <div className="h-1/2 flex flex-col space-y-2">
@@ -64,7 +64,7 @@ const PieceCarousel: FC<PieceCarouselProps> = ({ pieces }) => {
 
             <div className="flex-1 h-full flex flex-nowrap items-center justify-evenly overflow-hidden ">
                 {pieces.map((piece, index) => (
-                    <div onClick={() => {setActivePieceIndex(index)}} key={index} className={cn("p-2 flex-shrink-0 cursor-pointer border border-transparent rounded-lg transition-widthandheight ease-in-out delay-50", activePieceIndex === index ? 'w-44 h-56 border-black/50' : 'w-28 h-36 hover:border-black/20')}>
+                    <div onClick={() => {setActivePieceIndex(index)}} key={index} className={cn("p-2 cursor-pointer border border-transparent rounded-lg transition-widthandheight ease-in-out delay-50", activePieceIndex === index ? 'w-44 h-56 border-black/50' : 'w-28 h-36 hover:border-black/20')}>
                         <div className="relative w-full h-full">
                             <Image src={piece.imagePiece} alt='' fill style={{ objectFit: 'contain'}}/>
                             <div className="absolute -bottom-2 right-1">
