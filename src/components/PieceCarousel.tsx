@@ -64,7 +64,7 @@ const PieceCarousel: FC<PieceCarouselProps> = ({ pieces }) => {
 
             <div className="flex-1 h-full flex flex-nowrap items-center justify-evenly overflow-hidden ">
                 {pieces.map((piece, index) => (
-                    <div onClick={() => {setActivePieceIndex(index)}} key={index} className={cn("mx-8 p-2 flex-shrink-0 cursor-pointer border border-transparent rounded-lg transition-widthandheight ease-in-out delay-50", activePieceIndex === index ? 'w-44 h-56 border-black/50' : 'w-28 h-36 hover:border-black/20')}>
+                    <div onClick={() => {setActivePieceIndex(index)}} key={index} className={cn("p-2 flex-shrink-0 cursor-pointer border border-transparent rounded-lg transition-widthandheight ease-in-out delay-50", activePieceIndex === index ? 'w-44 h-56 border-black/50' : 'w-28 h-36 hover:border-black/20')}>
                         <div className="relative w-full h-full">
                             <Image src={piece.imagePiece} alt='' fill style={{ objectFit: 'contain'}}/>
                             <div className="absolute -bottom-2 right-1">
