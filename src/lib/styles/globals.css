@@ -74,3 +74,38 @@
     @apply bg-background text-foreground;
   }
 }
+
+.diagonal-corners {
+  position: relative;
+  display: inline-block;
+  margin: 8px 0;
+  border: none;
+}
+
+.diagonal-corners:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+  border-top: 8px solid #EC7FFB;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.diagonal-corners:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+  border-bottom: 8px solid #EC7FFB;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
