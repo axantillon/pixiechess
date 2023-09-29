@@ -22,9 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(font.className, "w-screen h-screen")} style={{
-        backgroundImage: `url(/background.png)`,
+        backgroundImage: `url(/background2.png)`,
       }}>
-        {/* <Image alt="background" src={Background} quality={100} fill sizes='100vw' style={{ objectFit: 'cover', zIndex: "-1" }} /> */}
         <ProviderWrapper>
           <NavBar />
           {children}
