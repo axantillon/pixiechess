@@ -109,3 +109,15 @@
   margin-left: 8px;
   margin-right: 8px;
 }
+
+.boxArrow:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100px;
+  height: 100px;
+  background-color: #EC7FFB;
+  top: 0;
+  right: 100%;
+  margin-left: -8px;
+}
