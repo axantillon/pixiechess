@@ -77,7 +77,7 @@ export default function Home() {
   ]
 
   return (
-    <main className="pb-12 mx-8">
+    <main className="pb-12">
       <PieceCarousel pieces={pieces} />
       <Separator className="my-20 bg-black" />
       <Explainer />

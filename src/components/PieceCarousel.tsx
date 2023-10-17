@@ -88,7 +88,7 @@ const PieceCarousel: FC<PieceCarouselProps> = ({ pieces }) => {
                 <FaArrowRight />
             </Button>
         </div>
-        <div className={cn("relative w-full h-[500px] before:content-[''] before:absolute before:w-8 before:h-8 before:-top-4 before:rotate-45 before:border-l-2 before:border-l-white before:bg-[#F3F8FB]/50 before:-z-1", arrowPosition[activePieceIndex])}>
+        <div className={cn("relative w-full h-[500px] before:content-[''] before:absolute before:w-8 before:h-8 before:-top-4 before:rotate-45 before:border-l-2 before:border-l-white before:bg-gradient-to-br before:from-[#F3F8FB80] before:from-50% before:to-50% before:z-10", arrowPosition[activePieceIndex])}>
             <PieceBox piece={pieces[activePieceIndex]} />
         </div>
     </div>

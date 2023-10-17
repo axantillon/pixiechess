@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { FaXTwitter } from 'react-icons/fa6';
 import ConnectWallet from './misc/ConnectWallet';
 import { Button } from './ui/button';
+import Treasury from './misc/Treasury';
 
 interface NavBarProps {
   
@@ -13,10 +14,7 @@ const NavBar: FC<NavBarProps> = ({  }) => {
             <div className="flex space-x-2">
                 {/* <Image src={Logo} alt='logo' width={100} height={100} /> */}
 
-                <Button className='h-8 space-x-4'>
-                    <span>Treasury</span>
-                    <span>Ξ1274.24</span>
-                </Button>
+                <Treasury />
                 <Button>
                     <FaXTwitter />
                 </Button>
