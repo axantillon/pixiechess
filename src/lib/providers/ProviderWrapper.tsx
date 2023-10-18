@@ -1,19 +1,14 @@
 'use client'
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import {
-    RainbowKitProvider,
-    getDefaultWallets,
+  RainbowKitProvider,
+  getDefaultWallets,
 } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 import { FC, ReactNode } from 'react';
 import { WagmiConfig, configureChains, createConfig } from 'wagmi';
 import {
-    arbitrum,
-    base,
-    goerli,
-    mainnet,
-    optimism,
-    polygon,
-    zora,
+  goerli
 } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
@@ -38,6 +33,11 @@ const wagmiConfig = createConfig({
   publicClient
 })
 
+const apollo = new ApolloClient({
+    uri: process.env.NEXT_PUBLIC_GRAPHQL_API,
+    cache: new InMemoryCache(),
+});
+
 interface ProviderWrapperProps {
     children: ReactNode
 }
@@ -46,7 +46,9 @@ const ProviderWrapper: FC<ProviderWrapperProps> = ({ children }) => {
     return (
         <WagmiConfig config={wagmiConfig}>
             <RainbowKitProvider chains={chains}>
-                {children}
+                <ApolloProvider client={apollo}>
+                  {children}
+                </ApolloProvider>
             </RainbowKitProvider>
         </WagmiConfig>
     )

@@ -14,7 +14,7 @@ const NavBar: FC<NavBarProps> = ({  }) => {
             <div className="flex space-x-2">
                 {/* <Image src={Logo} alt='logo' width={100} height={100} /> */}
 
-                <Treasury />
+                {/* <Treasury /> */}
                 <Button>
                     <FaXTwitter />
                 </Button>
