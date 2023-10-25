@@ -6,24 +6,24 @@ import {
 } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 import { FC, ReactNode } from 'react';
-import { WagmiConfig, configureChains, createConfig } from 'wagmi';
+import { WagmiConfig, configureChains, createConfig, mainnet } from 'wagmi';
 import {
-  goerli
+  goerli, optimism
 } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
 const { chains, publicClient } = configureChains(
-  [goerli],
+  [mainnet, goerli, optimism],
   [
-    alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY!! }),
+    alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY_GOERLI! }),
     publicProvider()
   ]
 );
 
 const { connectors } = getDefaultWallets({
   appName: 'PixieChess',
-  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_ID!!,
+  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_ID!,
   chains
 });
 
@@ -44,13 +44,13 @@ interface ProviderWrapperProps {
 
 const ProviderWrapper: FC<ProviderWrapperProps> = ({ children }) => {
     return (
+      <ApolloProvider client={apollo}>
         <WagmiConfig config={wagmiConfig}>
             <RainbowKitProvider chains={chains}>
-                <ApolloProvider client={apollo}>
                   {children}
-                </ApolloProvider>
             </RainbowKitProvider>
         </WagmiConfig>
+      </ApolloProvider>
     )
 }
 

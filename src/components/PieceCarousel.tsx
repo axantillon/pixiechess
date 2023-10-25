@@ -1,14 +1,16 @@
 'use client'
+import { useAuctions } from '@/lib/hooks/useAuctions';
 import { Auction } from '@/lib/types/auction';
+import { GET_AUCTION_BY_ID } from '@/lib/types/graphql';
 import { cn } from '@/lib/utils/cn';
+import { useQuery } from '@apollo/client';
 import Image from 'next/image';
 import { FC, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
+import { formatEther } from 'viem';
+import PlaceBid from './PlaceBid';
 import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { useAuctions } from '@/lib/hooks/useAuctions';
-import { useQuery } from '@apollo/client';
-import { GET_AUCTION_BY_ID } from '@/lib/types/graphql';
+import { DateTime } from 'luxon';
 
 const AuctionBox = ({ auction }: { auction: Auction }) => {
 
@@ -20,6 +22,7 @@ const AuctionBox = ({ auction }: { auction: Auction }) => {
     })
 
     const { finalized, canceled } = auction;
+    const highestBid = (revalAuction?.auction && revalAuction?.auction?.highestBid !== null) ? formatEther(BigInt(revalAuction?.auction?.highestBid), "wei") : (auction.highestBid !== null ? formatEther(BigInt(auction.highestBid), "wei"): 'None')
 
     return (
         <div className={cn("flex w-full h-full font-extrabold px-12 py-6 border-2 border-l-white border-t-white border-r-black border-b-black bg-[#F3F8FB]/50")}>
@@ -34,20 +37,15 @@ const AuctionBox = ({ auction }: { auction: Auction }) => {
                     <div className="h-1/6 flex text-2xl font-bold space-x-10">
                         <div className="flex flex-col space-y-1">
                             <span>Highest bid</span>
-                            <span>Ξ{revalAuction?.auction ? revalAuction.auction.highestBid : auction.highestBid}</span>
+                            <span>Ξ{highestBid === '0' ? 'None' : highestBid}</span>
                         </div>
                         <div className="flex flex-col space-y-1">
                             <span>Auction ends in</span>
-                            <span>{auction.endTime}</span>
+                            <span>{DateTime.fromSeconds(Number(auction.endTime)).toLocaleString()}</span>
                         </div>
                     </div>
 
-                    <div className="h-1/6 flex items-center space-x-2">
-                        <Input placeholder={`${revalAuction?.auction ? revalAuction.auction.highestBid : auction.highestBid} or more`} className='w-1/2 text-xl font-bold' />
-                        <div className="diagonal-corners text-white px-4 bg-[#EC7FFB] z-10 leading-4 drop-shadow-md cursor-pointer">
-                            <span>Place bid</span>
-                        </div>
-                    </div>
+                    <PlaceBid auctionId={auction.auctionId} highestBid={highestBid} />
 
                     <div className="h-1/4"></div>
 
