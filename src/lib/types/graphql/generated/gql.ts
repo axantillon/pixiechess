@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n    query GetAllAuctions {\n        auctions {\n            id\n            canceled\n            duration\n            endTime\n            finalized\n            highestBid\n            highestBidder\n            reservePrice\n            startTime\n            tokenId\n        }\n        tokens {\n            id\n            uri\n        }\n    }\n": types.GetAllAuctionsDocument,
-    "\n    query GetAuction($id: ID!) { \n        auction (id: $id) {\n            id\n            canceled\n            finalized\n            highestBid\n            highestBidder\n        }\n    }\n": types.GetAuctionDocument,
+    "\n    query GetAuction($id: ID!) { \n        auction (id: $id) {\n            id\n            canceled\n            finalized\n            highestBid\n        }\n        # auctionBids (where: { auctionId: {_eq: $id} }) {\n        #     id\n        #     auctionId\n        #     amount\n        #     bidder\n        #     blockNumber\n        #     blockTimestamp\n        #     duration\n        #     transactionHash\n        # }\n    }\n": types.GetAuctionDocument,
 };
 
 /**
@@ -38,7 +38,7 @@ export function graphql(source: "\n    query GetAllAuctions {\n        auctions 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    query GetAuction($id: ID!) { \n        auction (id: $id) {\n            id\n            canceled\n            finalized\n            highestBid\n            highestBidder\n        }\n    }\n"): (typeof documents)["\n    query GetAuction($id: ID!) { \n        auction (id: $id) {\n            id\n            canceled\n            finalized\n            highestBid\n            highestBidder\n        }\n    }\n"];
+export function graphql(source: "\n    query GetAuction($id: ID!) { \n        auction (id: $id) {\n            id\n            canceled\n            finalized\n            highestBid\n        }\n        # auctionBids (where: { auctionId: {_eq: $id} }) {\n        #     id\n        #     auctionId\n        #     amount\n        #     bidder\n        #     blockNumber\n        #     blockTimestamp\n        #     duration\n        #     transactionHash\n        # }\n    }\n"): (typeof documents)["\n    query GetAuction($id: ID!) { \n        auction (id: $id) {\n            id\n            canceled\n            finalized\n            highestBid\n        }\n        # auctionBids (where: { auctionId: {_eq: $id} }) {\n        #     id\n        #     auctionId\n        #     amount\n        #     bidder\n        #     blockNumber\n        #     blockTimestamp\n        #     duration\n        #     transactionHash\n        # }\n    }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

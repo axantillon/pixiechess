@@ -1,27 +1,31 @@
 'use client'
 import { useAuctions } from '@/lib/hooks/useAuctions';
 import { Auction } from '@/lib/types/auction';
-import { GET_AUCTION_BY_ID } from '@/lib/types/graphql';
+import { GET_AUCTION_AND_BIDS_BY_ID } from '@/lib/types/graphql';
 import { cn } from '@/lib/utils/cn';
 import { useQuery } from '@apollo/client';
+import { DateTime } from 'luxon';
 import Image from 'next/image';
-import { FC, useState } from 'react';
+import Link from 'next/link';
+import { FC, useEffect, useState } from 'react';
+import { BiLinkExternal } from 'react-icons/bi';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa6';
+import truncateEthAddress from 'truncate-eth-address';
 import { formatEther } from 'viem';
 import PlaceBid from './PlaceBid';
 import { Button } from './ui/button';
-import { DateTime } from 'luxon';
+import { Separator } from './ui/separator';
 
 const AuctionBox = ({ auction }: { auction: Auction }) => {
 
-    const { data: revalAuction, loading } = useQuery(GET_AUCTION_BY_ID, {
+    const { data: revalAuction, loading } = useQuery(GET_AUCTION_AND_BIDS_BY_ID, {
         variables: {
             id: auction.auctionId
         },
         pollInterval: 1000
     })
 
-    const { finalized, canceled } = auction;
+    const { finalized, canceled } = revalAuction?.auction || auction;
     const highestBid = (revalAuction?.auction && revalAuction?.auction?.highestBid !== null) ? formatEther(BigInt(revalAuction?.auction?.highestBid), "wei") : (auction.highestBid !== null ? formatEther(BigInt(auction.highestBid), "wei"): 'None')
 
     return (
@@ -47,7 +51,22 @@ const AuctionBox = ({ auction }: { auction: Auction }) => {
 
                     <PlaceBid auctionId={auction.auctionId} highestBid={highestBid} />
 
-                    <div className="h-1/4"></div>
+                    <div className="flex flex-col h-1/4 w-64 overflow-y-scroll">
+                        {revalAuction?.auctionBids && revalAuction.auctionBids.map((bid: {bidder: string, amount: string, transactionHash: string}, index: number) => (<>
+                            {index !== 0 && <Separator className='bg-black' />}
+                            <div key={index} className="w-full flex items-center justify-between">
+                                <div className="">
+                                    <span>{truncateEthAddress(bid.bidder)}</span>
+                                </div>
+                                <div className="flex items-center justify-between space-x-1">
+                                    <span>Ξ{formatEther(BigInt(bid.amount), "wei")}</span>
+                                    <Link href={`https://goerli.etherscan.io/tx/${bid.transactionHash}`}  className="-mt-0.5">
+                                        <BiLinkExternal />
+                                    </Link>
+                                </div>
+                            </div>
+                        </>))}
+                    </div>
 
                 </div>
                 <div className="w-1/3 py-8">
